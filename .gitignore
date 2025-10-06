@@ -17,4 +17,6 @@
 # dirs
 .idea
 .vagrant
+
+# project specific
 cam.cfg
