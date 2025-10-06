@@ -7,7 +7,7 @@ from foscontrol import Cam
 
 ################################
 # Don't forget to edit cam.cfg #
-# to reflect you setup!        #
+# to reflect your setup!        #
 ################################
 
 if __name__ == "__main__":
