@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys
 from configparser import ConfigParser
 from foscontrol import Cam
 
@@ -21,28 +20,24 @@ if __name__ == "__main__":
     user = config.get('general', 'user')
     passwd = config.get('general', 'password')
 
-    if sys.hexversion < 0x03040300:
-        # parameter context not available
-        ctx = None
-    else:
+    if prot == "https":
         # disable cert checking
         # see also http://tuxpool.blogspot.de/2016/05/accessing-servers-with-self-signed.html
         import ssl
-
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
         ctx.verify_mode = ssl.CERT_NONE
+    else:
+        ctx = None
 
     # connection to the camera
     do = Cam(prot, host, port, user, passwd, context=ctx)
 
-    # display basic camera info
+    # display camera info
     res = do.getDevInfo()
     if res.result == 0:  # quick check
-        print("""product name: %s
-serial number: %s
-camera name: %s
-firmware version: %s
-hardware version: %s""" % (res.productName, res.serialNo, res.devName, res.firmwareVer, res.hardwareVer))
+        print(f"product name: {res.productName}")
+        print(f"firmware version: {res.firmwareVer}")
+        print(f"hardware version: {res.hardwareVer}")
     else:
         print(res._result)
