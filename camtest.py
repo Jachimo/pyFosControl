@@ -1,15 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-
-from foscontrol import Cam
 import sys
-
-try:  # PY3
-    from configparser import ConfigParser
-except ImportError:
-    from ConfigParser import SafeConfigParser as ConfigParser
+from configparser import ConfigParser
+from foscontrol import Cam
 
 ################################
 # Don't forget to edit cam.cfg #
