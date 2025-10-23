@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "foscontrol"
-version = "0.1.2"
+version = "0.2.0"
 description = "Python interface to Foscam CGI API"
 authors = ["Jachimo <you@example.com>"]
 license = "GPL-2.0-only"
