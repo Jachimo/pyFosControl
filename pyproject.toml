@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "foscontrol"
+version = "0.1.2"
+description = "Python interface to Foscam CGI API"
+authors = ["Jachimo <you@example.com>"]
+license = "GPL-2.0-only"
+readme = "README.md"
+homepage = "https://github.com/MStrecke/pyFosControl"
+repository = "https://github.com/MStrecke/pyFosControl"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [
+    { include = "foscontrol" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# Optional dependencies for low-level sniffing functionality
+dpkt = { version = "^1.9.7", optional = true }
+pylibpcap = { version = "^0.7.1", optional = true }
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
+[tool.poetry.extras]
+sniff = ["dpkt", "pylibpcap"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+foscam = "foscontrol.cli:main"
