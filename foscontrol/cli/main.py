@@ -6,7 +6,7 @@ import inspect
 import argparse
 from configparser import ConfigParser
 import ssl
-from foscontrol import Cam, CamBase
+from ..camera.extended import Cam
 
 def get_method_params(method):
     """Get parameters for a method excluding self"""

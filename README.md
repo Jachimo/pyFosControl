@@ -3,8 +3,8 @@ pyFosControl
 
 Python interface to Foscam CGI API for HD models
 
-> Jachimo's Python 3.x-only fork!  
-> For Python 2.7+ compatibility, see the upstream repository.
+> Jachimo's **Python 3.x-only** fork!
+> Now builds using [Poetry](https://python-poetry.org/) instead of `setup.py`.
 
 
 Introduction
@@ -22,43 +22,65 @@ describing a CGI interface which seems to make most of these functions available
 python interface.
 
 
-Getting started
----------------
+Installation
+------------
 
-1. Create a new `cam.cfg` file using `cam.cfg.example` as template.
-2. Run `camtest.py` from the command line to get some basic information (like model info, firmware and hardware version).
+This project uses Poetry for dependency management. To install:
 
+1. Install Poetry if you haven't already:
+   ```bash
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
+
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/Jachimo/pyFosControl.git
+   cd pyFosControl
+   ```
+
+3. Install dependencies:
+   ```bash
+   poetry install
+   ```
+
+4. Optional: Install with sniffing support:
+   ```bash
+   poetry install --extras "sniff"
+   ```
+
+5. Create a config file:
+   ```bash
+   cp cam.cfg.example cam.cfg
+   # Edit cam.cfg with your camera settings
+   ```
 
 Using the CLI Interface
 ----------------------
 
-A command-line interface is provided to interact with your camera. 
-The `foscam_cli.py` script allows you to execute any SDK command directly.
-
-Basic usage:
+A command-line interface is provided to interact with your camera. You can run commands through Poetry:
 
 ```bash
 # List all available commands
-./foscam_cli.py --list
+poetry run foscam_cli --list
 
 # Execute a specific command
-./foscam_cli.py <command>
+poetry run foscam_cli <command>
 ```
 
 Examples:
 
 ```bash
 # Get camera information
-./foscam_cli.py getDevInfo
+poetry run foscam_cli getDevInfo
 
 # Take a snapshot
-./foscam_cli.py snapPicture
+poetry run foscam_cli snapPicture
 
 # Move the camera (for PTZ models)
-./foscam_cli.py ptzMoveUp
+poetry run foscam_cli ptzMoveUp
 
 # Configure motion detection
-./foscam_cli.py getMotionDetectConfig
+poetry run foscam_cli getMotionDetectConfig
 ```
 
 The CLI will prompt for any required parameters when executing commands. 
@@ -73,3 +95,5 @@ Please note
 * The SDK documentation is inaccurate in places.
 * The non HD cameras use a different set of CGI commands and are not covered in this implementation.
 * The behaviour of the camera changes slightly with each new firmware version. Please include model and firmware version when sending bug reports (run `camtest.py` from the command line).
+
+
